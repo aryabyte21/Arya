@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HeaderResponsive } from "./components/Header";
 import { RandomImage } from "./components/RandomImage";
 import Arya from "./components/Arya";
-import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
 function App() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
