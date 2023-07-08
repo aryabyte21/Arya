@@ -70,18 +70,9 @@ interface ImageCardProps {
   image: string;
   title: string;
   author: string;
-  views: number;
-  comments: number;
 }
 
-export function ImageCard({
-  image,
-  title,
-  author,
-  views,
-  comments,
-  link,
-}: ImageCardProps) {
+export function ImageCard({ image, title, author, link }: ImageCardProps) {
   const { classes } = useStyles();
   const [isLoading, setIsLoading] = useState(true);
 

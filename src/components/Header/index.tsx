@@ -8,14 +8,18 @@ import {
   Paper,
   Transition,
   rem,
+  Button,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconAperture } from "@tabler/icons-react";
+import { IconAperture, IconBrandGithub } from "@tabler/icons-react";
+import { SwitchToggle } from "../SwitchToggle";
+import { useNavigate } from "react-router-dom";
+
 const HEADER_HEIGHT = rem(60);
 
 const useStyles = createStyles((theme: any) => ({
   root: {
-    position: "relative",
+    position: "fixed",
     zIndex: 1,
   },
 
@@ -100,6 +104,12 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
+  const navigate = useNavigate();
+  const handleLinkClick = (link: string) => {
+    setActive(link);
+    close();
+    navigate(link);
+  };
 
   const items = links.map((link) => (
     <a
@@ -111,6 +121,7 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
+        handleLinkClick(link.link);
         close();
       }}
     >
@@ -121,9 +132,28 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   return (
     <Header height={HEADER_HEIGHT} className={classes.root}>
       <Container className={classes.header}>
-        <IconAperture size={28}/>
+        <Button
+          variant="gradient"
+          gradient={{ from: "teal", to: "blue", deg: 60 }}
+          leftIcon={<IconAperture size={28} />}
+          size="md"
+        >
+          kaliedoscope
+        </Button>
         <Group spacing={5} className={classes.links}>
           {items}
+          <Button
+            component="a"
+            href="https://github.com/aryabyte21/Arya"
+            target="_blank"
+            variant="subtle"
+            leftIcon={<IconBrandGithub size="0.9rem" />}
+          >
+            GitHub
+          </Button>
+        </Group>
+        <Group>
+          <SwitchToggle />
         </Group>
 
         <Burger

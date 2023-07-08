@@ -34,15 +34,11 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
     overflow: "hidden",
   },
-  refreshButton: {
-    position: "absolute",
-    top: theme.spacing.md,
-    right: theme.spacing.md,
-    zIndex: 1,
-  },
+
   shareButtons: {
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
     marginTop: theme.spacing.md,
     gap: theme.spacing.md,
   },
@@ -103,19 +99,8 @@ export const RandomImage = () => {
               image={imageUrl}
               title={""}
               author={""}
-              views={0}
-              comments={0}
             />
           }
-          <Button
-            variant="outline"
-            color="gray"
-            className={classes.refreshButton}
-            onClick={fetchRandomImage}
-            leftIcon={<IconReload />}
-          >
-            Refresh
-          </Button>
         </Paper>
         <div className={classes.shareButtons}>
           <FacebookShareButton url={shareUrl}>
@@ -127,6 +112,14 @@ export const RandomImage = () => {
           <WhatsappShareButton url={shareUrl}>
             <IconBrandWhatsapp />
           </WhatsappShareButton>
+          <Button
+            variant="light"
+            onClick={fetchRandomImage}
+            leftIcon={<IconReload />}
+            style={{ marginTop: "-0.5rem" }}
+          >
+            Refresh
+          </Button>
         </div>
       </Container>
     </div>
